@@ -4,12 +4,14 @@ const path = require("path");
 module.exports = {
   mode: "development",
   entry: "./src/index.js",
+  devtool: "inline-source-map",
   output: {
-    filename: "bundle.js",
+    filename: "[bundle].js",
     path: path.resolve(__dirname, "dist"),
   },
   plugins: [
     new HtmlWebpackPlugin({
+      title: "Development",
       template: path.resolve(__dirname, "public", "index.html"),
     }),
   ],
@@ -42,5 +44,14 @@ module.exports = {
         ],
       },
     ],
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, "public"),
+    },
+    client: {
+      logging: "none",
+    },
+    port: 3300,
   },
 };
