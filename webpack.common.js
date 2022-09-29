@@ -2,19 +2,20 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
-  devtool: "inline-source-map",
-  output: {
-    filename: "[bundle].js",
-    path: path.resolve(__dirname, "dist"),
+  entry: {
+    app: "./src/index.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Development",
+      title: "Production",
       template: path.resolve(__dirname, "public", "index.html"),
     }),
   ],
+  output: {
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
+    clean: true,
+  },
   resolve: {
     modules: [__dirname, "node_modules"],
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
@@ -44,14 +45,5 @@ module.exports = {
         ],
       },
     ],
-  },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, "public"),
-    },
-    client: {
-      logging: "none",
-    },
-    port: 3300,
   },
 };
