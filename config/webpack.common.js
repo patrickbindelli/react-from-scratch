@@ -3,21 +3,21 @@ const path = require("path");
 
 module.exports = {
   entry: {
-    app: "./src/index.js",
+    main: "./src/index.js",
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: "Production",
-      template: path.resolve(__dirname, "public", "index.html"),
+      template: path.resolve(__dirname, "../public", "index.html"),
     }),
   ],
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     clean: true,
   },
   resolve: {
-    modules: [__dirname, "node_modules"],
+    modules: [__dirname, "../node_modules"],
     extensions: ["*", ".js", ".jsx", ".tsx", ".ts"],
   },
   module: {
